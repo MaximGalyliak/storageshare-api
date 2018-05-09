@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			status: {
 				type: DataTypes.STRING,
-				defaultValue: 'created',
+				defaultValue: 'created', //enroute, stored, ..
 			},
 		},
 		{
@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 	);
 
 	Boxes.associate = function(models) {
-		Boxes.belongsTo(models.Boxes, {
+		Boxes.belongsTo(models.Renters, {
 			foreignKey: {
 				allowNull: false,
 			},
@@ -45,5 +45,8 @@ module.exports = function(sequelize, DataTypes) {
 				allowNull: false,
 			},
 		});
+	};
+	Boxes.associate = function(models) {
+		Boxes.belongsTo(models.Locations);
 	};
 };
