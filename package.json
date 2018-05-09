@@ -1,18 +1,38 @@
 {
-  "name": "storageshare-api",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "chai": "^4.1.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
-    "mocha": "^5.1.1",
-    "morgan": "~1.9.0"
-  }
+	"name": "storageshare-api",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www",
+		"test": "echo no test"
+	},
+	"dependencies": {
+		"chai": "^4.1.2",
+		"cookie-parser": "~1.4.3",
+		"debug": "~2.6.9",
+		"dotenv": "^5.0.1",
+		"express": "~4.16.0",
+		"http-errors": "~1.6.2",
+		"jade": "~1.11.0",
+		"mocha": "^5.1.1",
+		"morgan": "~1.9.0",
+		"mysql2": "^1.5.3",
+		"sequelize": "^4.37.7"
+	},
+	"description": "",
+	"main": "app.js",
+	"directories": {
+		"test": "test"
+	},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jaseat/storageshare-api.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jaseat/storageshare-api/issues"
+	},
+	"homepage": "https://github.com/jaseat/storageshare-api#readme"
 }
