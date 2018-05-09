@@ -8,6 +8,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var PORT = process.env.PORT || 8080;
+
+//requiring DB
+var db = require('./models');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,18 +28,26 @@ app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
+});
+
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync().then(function() {
+	app.listen(PORT, function() {
+		console.log('App listening on PORT ' + PORT);
+	});
 });
 
 module.exports = app;
