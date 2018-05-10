@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define(
+	var Sizes = sequelize.define(
 		'Sizes',
 		{
 			description: {
@@ -39,4 +39,6 @@ module.exports = function(sequelize, DataTypes) {
 	Sizes.associate = function(models) {
 		Sizes.hasMany(models.Boxes);
 	};
+
+	return Sizes;
 };

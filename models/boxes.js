@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define(
+	var Boxes = sequelize.define(
 		'Boxes',
 		{
 			description: {
@@ -32,9 +32,10 @@ module.exports = function(sequelize, DataTypes) {
 	);
 
 	Boxes.associate = function(models) {
-		Boxes.belongsTo(models.Renters, {
+		
+		Boxes.belongsTo(models.Locations, {
 			foreignKey: {
-				allowNull: false,
+				allowNull: true,
 			},
 		});
 	};
@@ -46,7 +47,14 @@ module.exports = function(sequelize, DataTypes) {
 			},
 		});
 	};
+
 	Boxes.associate = function(models) {
-		Boxes.belongsTo(models.Locations);
+		Boxes.belongsTo(models.Renters, {
+			foreignKey: {
+				allowNull: false,
+			},
+		});
 	};
+
+	return Boxes;
 };

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define(
+	var Renters = sequelize.define(
 		'Renters',
 		{
 			name: {
@@ -50,4 +50,6 @@ module.exports = function(sequelize, DataTypes) {
 			onDelete: 'cascade',
 		});
 	};
+
+	return Renters;
 };

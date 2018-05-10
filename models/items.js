@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define(
+	var Items = sequelize.define(
 		'Items',
 		{
 			name: {
@@ -20,4 +20,6 @@ module.exports = function(sequelize, DataTypes) {
 	Items.associate = function(models) {
 		Items.belongsTo(models.Boxes);
 	};
+
+	return Items;
 };

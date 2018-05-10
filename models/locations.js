@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define(
+	var Locations = sequelize.define(
 		'Locations',
 		{
 			address: {
@@ -18,6 +18,14 @@ module.exports = function(sequelize, DataTypes) {
 				type: DataTypes.INTEGER,
 				defaultValue: 0,
 				allowNull: false,
+			},
+			min_box_size: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+			},
+			max_box_size: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
 			},
 			space_available: {
 				type: DataTypes.VIRTUAL,
@@ -44,4 +52,14 @@ module.exports = function(sequelize, DataTypes) {
 			},
 		});
 	};
+
+	Locations.associate = function(models) {
+		Locations.hasMany(models.Sizes);
+	};
+
+	Locations.associate = function(models) {
+		Locations.hasMany(models.Boxes);
+	};
+
+	return Locations;
 };
