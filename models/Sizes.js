@@ -9,8 +9,22 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			price: {
 				type: DataTypes.DECIMAL(6, 2),
-				defaultValue : 0.00,
-				allowNull: false,
+				defaultValue: 0.0,
+			},
+			height: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+				isNumeric: true,
+			},
+			width: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+				isNumeric: true,
+			},
+			depth: {
+				type: DataTypes.INTEGER,
+				defaultValue: 0,
+				isNumeric: true,
 			},
 		},
 		{
@@ -20,10 +34,9 @@ module.exports = function(sequelize, DataTypes) {
 
 	Sizes.associate = function(models) {
 		Sizes.hasMany(models.Locations);
-  };
-  
-  Sizes.associate = function(models) {
-		Sizes.hasMany(models.Boxes);
-  };
+	};
 
+	Sizes.associate = function(models) {
+		Sizes.hasMany(models.Boxes);
+	};
 };
