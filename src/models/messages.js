@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
     };
 
     Messages.associate = function(models) {
-        Messages.belongsTo(models.Lenders, {
+        Messages.belongsTo(models.Renters, {
             foreignKey: {
                 allowNull: false,
             }
