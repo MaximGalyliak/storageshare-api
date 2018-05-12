@@ -7,8 +7,8 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: true,
             },
             isAccepted: {
-                type: DataTypes.boolean,
-                defaltValue: false
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
             }
         },
         {
