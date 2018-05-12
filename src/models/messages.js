@@ -16,21 +16,21 @@ module.exports = function(sequelize, DataTypes) {
         }
     );
 
-    Messages.associate = function(models) {
-        Messages.hasOne(models.Renters, {
-            foreignKey: {
-                allowNull: false,
-            }
-        });
-    };
+    // Messages.associate = function(models) {
+    //     Messages.hasOne(models.Renters, {
+    //         foreignKey: {
+    //             allowNull: false,
+    //         }
+    //     });
+    // };
 
-    Messages.associate = function (models) {
-        Messages.hasOne(models.Lenders, {
-            foreignKey: {
-                allowNull: false,
-            }
-        })    
-    };
+    // Messages.associate = function (models) {
+    //     Messages.hasOne(models.Lenders, {
+    //         foreignKey: {
+    //             allowNull: false,
+    //         }
+    //     })    
+    // };
 
     return Messages;
 
