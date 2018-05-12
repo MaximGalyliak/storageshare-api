@@ -1,6 +1,6 @@
 require('dotenv').config({ path: '.env' });
 
-//console.log(process.env);
+// console.log(process.env);
 
 module.exports = {
 	development: {
@@ -8,7 +8,7 @@ module.exports = {
 		password: process.env.DEV_DB_PASSWORD,
 		database: process.env.DEV_DB,
 		host: process.env.DEV_DB_HOSTNAME,
-		dialect: process.env.DEV_DB_DIALECT,
+		dialect: "mysql",
 		port: process.env.DEV_DB_PORT,
 	},
 	test: {
