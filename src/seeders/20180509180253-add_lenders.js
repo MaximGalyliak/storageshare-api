@@ -9,6 +9,7 @@ module.exports = {
 					name: 'John Doe',
 					email: 'demo@demo.com',
 					address: '911 XYZ St, XYZ, XZ 11111',
+					password: 'password1!',
 					background_checked: true,
 					phone: '210-555-5555',
 					createdAt: new Date(),
@@ -17,6 +18,7 @@ module.exports = {
 				{
 					name: 'Mike Doe',
 					email: 'mike@demo.com',
+					password: 'password1!',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
 					createdAt: new Date(),
@@ -25,6 +27,7 @@ module.exports = {
 				{
 					name: 'Jane Doe',
 					email: 'jane@demo.com',
+					password: 'password1!',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					background_checked: true,
 					phone: '210-555-5555',
@@ -34,6 +37,7 @@ module.exports = {
 				{
 					name: 'Jack Doe',
 					email: 'jax@demo.com',
+					password: 'password1!',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
 					createdAt: new Date(),
@@ -42,6 +46,7 @@ module.exports = {
 				{
 					name: 'Charlie Doe',
 					email: 'rose@demo.com',
+					password: 'password1!',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					background_checked: true,
 					phone: '210-555-5555',
