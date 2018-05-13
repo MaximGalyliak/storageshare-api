@@ -58,8 +58,8 @@ app.use(function(err, req, res, next) {
 	res.render('error');
 });
 
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
-db.sequelize.sync().then(function() {});
+// // Syncing our sequelize models and then starting our Express app
+// // =============================================================
+// db.sequelize.sync().then(function() {});
 
 module.exports = app;

@@ -2,6 +2,8 @@
 
 module.exports = {
 	up: (queryInterface, Sequelize) => {
+		var bcrypt = require('bcrypt');
+		
 		return queryInterface.bulkInsert(
 			'Renters',
 			[
@@ -11,6 +13,7 @@ module.exports = {
 					paypal_id: 'johndoepaypal',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
+					password: bcrypt.hashSync('test', bcrypt.genSaltSync()),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
@@ -20,6 +23,7 @@ module.exports = {
 					paypal_id: 'johndoepaypal',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
+					password: bcrypt.hashSync('pass', bcrypt.genSaltSync()),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
@@ -29,6 +33,7 @@ module.exports = {
 					paypal_id: 'johndoepaypal',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
+					password: bcrypt.hashSync('password', bcrypt.genSaltSync()),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
@@ -38,6 +43,7 @@ module.exports = {
 					paypal_id: 'johndoepaypal',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
+					password: bcrypt.hashSync('testpass', bcrypt.genSaltSync()),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
@@ -47,6 +53,7 @@ module.exports = {
 					paypal_id: 'johndoepaypal',
 					address: '911 XYZ St, XYZ, XZ 11111',
 					phone: '210-555-5555',
+					password: bcrypt.hashSync('123456789', bcrypt.genSaltSync()),
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},

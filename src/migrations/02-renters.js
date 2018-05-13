@@ -1,8 +1,14 @@
-module.exports = function(sequelize, DataTypes) {
-	var Renters = sequelize.define(
-		'Renters',
-		{
-			name: {
+'use strict';
+module.exports = {
+  up: (queryInterface, DataTypes) => {
+    return queryInterface.createTable('Renters', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      name: {
 				type: DataTypes.STRING,
 				validation: { len: [1, 50] },
 				allowNull: false,
@@ -14,10 +20,10 @@ module.exports = function(sequelize, DataTypes) {
 				},
 				allowNull: false,
 			},
-			// password: {
-			// 	type: DataTypes.STRING,
-			// 	allowNull: false,
-			// },
+			password: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
 			paypal_id: {
 				type: DataTypes.STRING,
 				validation: {
@@ -43,17 +49,17 @@ module.exports = function(sequelize, DataTypes) {
 				},
 				allowNull: false,
 			},
-		},
-		{
-			freezeTableName: true,
-		}
-	);
-
-	Renters.associate = function(models) {
-		Renters.hasMany(models.Boxes, {
-			onDelete: 'cascade',
-		});
-	};
-
-	return Renters;
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+    });
+  },
+  down: queryInterface => {
+    return queryInterface.dropTable('Renters');
+  },
 };

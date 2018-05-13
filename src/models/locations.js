@@ -51,13 +51,6 @@ module.exports = function(sequelize, DataTypes) {
 				allowNull: false,
 			},
 		});
-	};
-
-	Locations.associate = function(models) {
-		Locations.hasMany(models.Sizes);
-	};
-
-	Locations.associate = function(models) {
 		Locations.hasMany(models.Boxes);
 	};
 
