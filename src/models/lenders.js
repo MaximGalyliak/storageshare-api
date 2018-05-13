@@ -16,6 +16,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			password: {
 				type: DataTypes.STRING,
+				validation: { len: [7,50] },
 				allowNull: false
 			},
 			background_checked: {
