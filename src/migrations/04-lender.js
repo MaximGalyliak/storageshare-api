@@ -20,6 +20,11 @@ module.exports = {
 				},
 				allowNull: false,
 			},
+			password: {
+				type: DataTypes.STRING,
+				validation: { len: [7,50] },
+				allowNull: false
+			},
 			background_checked: {
 				type: DataTypes.BOOLEAN,
 				allowNull: true,
