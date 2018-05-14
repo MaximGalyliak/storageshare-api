@@ -19,9 +19,9 @@ router.get('/sizes', (req, res) => {
   })
 });
 
-router.use(isAuthenticated);
+router.use('/*/:user/', isAuthenticated);
 
-router.get('/boxes/:user', function(req, res) {
+router.get('/boxes/:user', isAuthenticated, function(req, res) {
   Boxes.findAll({
     where: {
       RenterId: req.params.user
