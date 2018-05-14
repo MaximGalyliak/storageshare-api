@@ -11,8 +11,21 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			email: {
 				type: DataTypes.STRING,
-				validation: {
+				validate: {
 					isEmail: true,
+					isUnqie: 
+						function(value, next) {
+							Renters.find({where: {email: value}})
+								.then((renter) => {
+									if(renter)
+										return next('Email already in use');
+									next();
+								})
+								.catch(error => {
+									if(error)
+										return next(error);
+								})
+						}
 				},
 				allowNull: false,
 			},
@@ -53,6 +66,28 @@ module.exports = function(sequelize, DataTypes) {
 
 	Renters.prototype.validPassword = function(plainTextPassword){
 		return bcrypt.compareSync(plainTextPassword, this.password);
+	}
+
+	Renters.beforeCreate(function(renter, options) {
+		return cryptPassword(renter.password)
+			.then(success => {
+				renter.password = success;
+			})
+			.catch(err => {
+				if(err) { console.log(err); }
+			});
+	});
+
+	function cryptPassword(password) {
+		return new Promise(function(resolve, reject) {
+			bcrypt.genSalt(10, function(err, salt) {
+				if(err) { return reject(err); }
+				bcrypt.hash(password, salt, function(err, hash) {
+					if(err) return reject(err);
+					return resolve(hash);
+				})
+			})
+		})
 	}
 
 	Renters.associate = function(models) {
