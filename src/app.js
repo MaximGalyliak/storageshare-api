@@ -2,10 +2,16 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var logger = require('morgan');
+var flash = require('connect-flash');
+var passport = require('./authentication');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var apiRouter   = require('./routes/api');
+
+var sequelize = require('./config/sequelize');
 
 var app = express();
 
@@ -20,6 +26,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// setup session
+var myStore = new SequelizeStore({
+  db: sequelize
+});
+app.use(session({ 
+  name: 'session-id',
+  secret: "scrt", 
+  store: myStore,
+  resave: true,
+  saveUninitialized: true,
+}));
+myStore.sync();
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 if(process.env.NODE_ENV === "development"){
@@ -39,8 +59,13 @@ if(process.env.NODE_ENV === "development"){
 }
 app.disable('etag');
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,9 +82,5 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('error');
 });
-
-// // Syncing our sequelize models and then starting our Express app
-// // =============================================================
-// db.sequelize.sync().then(function() {});
 
 module.exports = app;

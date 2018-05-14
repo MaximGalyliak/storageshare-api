@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = function(sequelize, DataTypes) {
 	var Renters = sequelize.define(
 		'Renters',
@@ -14,10 +16,10 @@ module.exports = function(sequelize, DataTypes) {
 				},
 				allowNull: false,
 			},
-			// password: {
-			// 	type: DataTypes.STRING,
-			// 	allowNull: false,
-			// },
+			password: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
 			paypal_id: {
 				type: DataTypes.STRING,
 				validation: {
@@ -48,6 +50,10 @@ module.exports = function(sequelize, DataTypes) {
 			freezeTableName: true,
 		}
 	);
+
+	Renters.prototype.validPassword = function(plainTextPassword){
+		return bcrypt.compareSync(plainTextPassword, this.password);
+	}
 
 	Renters.associate = function(models) {
 		Renters.hasMany(models.Boxes, {
