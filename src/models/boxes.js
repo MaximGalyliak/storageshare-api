@@ -7,11 +7,6 @@ module.exports = function(sequelize, DataTypes) {
 				validation: { max: 50 },
 				allowNull: false,
 			},
-			items: {
-				type: DataTypes.STRING,
-				validation: { max: 255 },
-				allowNull: false,
-			},
 			weight: {
 				type: DataTypes.INTEGER,
 				validate: { isInt: true },
@@ -37,27 +32,18 @@ module.exports = function(sequelize, DataTypes) {
 				allowNull: true,
 			},
 		});
-	};
-
-	Boxes.associate = function(models) {
 		Boxes.belongsTo(models.Sizes, {
 			foreignKey: {
 				allowNull: false,
 			},
 		});
-	};
-
-	Boxes.associate = function(models) {
 		Boxes.belongsTo(models.Renters, {
 			foreignKey: {
 				allowNull: false,
 			},
 		});
+		Boxes.hasMany(models.Items);
 	};
-
-	Boxes.associate = function(models) {
-		Boxes.hasMany(models.Items)
-	}
 
 	return Boxes;
 };

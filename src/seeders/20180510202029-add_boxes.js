@@ -7,7 +7,6 @@ module.exports = {
 			[
 				{
 					description: 'Kitchen 1',
-					items: 'Spatulas, Dishes, Cups',
 					weight: 50,
 					fragile: true,
 					status: 'created',
@@ -18,7 +17,6 @@ module.exports = {
 				},
 				{
 					description: 'Sporting goods',
-					items: 'balls, bats, shoes',
 					weight: 25,
 					fragile: false,
 					status: 'housed',
@@ -30,7 +28,6 @@ module.exports = {
 				},
 				{
 					description: 'Furniture',
-					items: 'sofa, table',
 					weight: 250,
 					fragile: false,
 					status: 'enroute',

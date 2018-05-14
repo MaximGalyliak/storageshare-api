@@ -1,10 +1,14 @@
-const bcrypt = require('bcrypt');
-
-module.exports = function(sequelize, DataTypes) {
-	var Renters = sequelize.define(
-		'Renters',
-		{
-			name: {
+'use strict';
+module.exports = {
+  up: (queryInterface, DataTypes) => {
+    return queryInterface.createTable('Renters', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      name: {
 				type: DataTypes.STRING,
 				validation: { len: [1, 50] },
 				allowNull: false,
@@ -45,21 +49,17 @@ module.exports = function(sequelize, DataTypes) {
 				},
 				allowNull: false,
 			},
-		},
-		{
-			freezeTableName: true,
-		}
-	);
-
-	Renters.prototype.validPassword = function(plainTextPassword){
-		return bcrypt.compareSync(plainTextPassword, this.password);
-	}
-
-	Renters.associate = function(models) {
-		Renters.hasMany(models.Boxes, {
-			onDelete: 'cascade',
-		});
-	};
-
-	return Renters;
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+    });
+  },
+  down: queryInterface => {
+    return queryInterface.dropTable('Renters');
+  },
 };

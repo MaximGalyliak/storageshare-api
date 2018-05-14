@@ -10,6 +10,7 @@ module.exports = {
 		host: process.env.DEV_DB_HOSTNAME,
 		dialect: "mysql",
 		port: process.env.DEV_DB_PORT,
+		logging: false,
 	},
 	test: {
 		username: process.env.TEST_DB_USERNAME,
