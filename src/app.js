@@ -10,7 +10,6 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var indexRouter = require('./routes/index');
 var apiRouter   = require('./routes/api');
-var newRenterRouter = require('./routes/newRenter');
 var sequelize = require('./config/sequelize');
 
 var app = express();

@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 router.post('/login',
   passport.authenticate('local'), 
   (req, res) => {
-    console.log('here');
     res.json({ id: req.user.id });
   }
 );
@@ -30,13 +29,14 @@ router.post('/newrenter', (req, res) => {
 		email: req.body.email,
 		paypal_id: req.body.paypal,
 		phone: req.body.phone,
-		address: req.body.address,
+    address: req.body.address,
+    password: req.body.password,
 	})
 		.then((response) => {
-			res.status(201).render({ newRenterId: response.dataValues.id });
+			res.status(201).json({ newRenterId: response.dataValues.id });
 		})
 		.catch((error) => {
-			res.sendStatus(500);
+			res.status(400).json({error: error.get('email')[0].message});
 		});
 });
 
