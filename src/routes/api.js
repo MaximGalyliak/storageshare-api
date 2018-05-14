@@ -43,4 +43,18 @@ router.post('/box', (req, res) => {
   });
 });
 
+router.post('/newrenter/signup', (req, res) => {
+  db.Renters.create({
+    name: req.body.name,
+    email: req.body.email,
+    paypal_id: req.body.paypal,
+    phone: req.body.phone,
+    address: req.body.address,
+  }).then(response => {
+    res.status(201).render({ newRenterId: response.dataValues.id });
+  }).catch(error => {
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;
