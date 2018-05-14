@@ -25,7 +25,6 @@ router.get('/logout', function(req, res) {
 });
 
 router.post('/newrenter', (req, res) => {
-  console.log('you hit me')
 	db.Renters.create({
 		name: req.body.name,
 		email: req.body.email,
