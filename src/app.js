@@ -14,10 +14,15 @@ var apiRouter = require('./routes/api');
 var sequelize = require('./config/sequelize');
 //lenders route
 var lenderIndexRouter = require('./routes/lenderIndex');
+<<<<<<< HEAD
 var lendersApiRouter = require('./routes/lendersApi');
 
 //comman route
 var messagesRouter = require('./routes/messagesRouter');
+=======
+//gmaps route
+var gmapsRouter = require('./routes/gmaps');
+>>>>>>> create api call to db to pull lenders data for maps function
 
 var app = express();
 
@@ -83,6 +88,9 @@ app.use('/messages', messagesRouter);
 //Lenders
 app.use('/lenders', lenderIndexRouter);
 app.use('/lendersapi', lendersApiRouter);
+
+//gmaps
+app.use('/gmaps', gmapsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
