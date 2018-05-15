@@ -1,3 +1,3 @@
 exports.gMaps = {
-    access_token_key: AIzaSyC6mH01Do84NQBlPGcvp2CrVYat1ylnVjA
-}
+	access_token_key: process.env.GOOGLE_MAPS_API_KEY
+};
