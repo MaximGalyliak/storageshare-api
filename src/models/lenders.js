@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
 				type: DataTypes.STRING,
 				validate: {
 					isEmail: true,
-					isUnqie: function(value, next) {
+					isUnique: function(value, next) {
 						Lenders.find({ where: { email: value } })
 							.then((lender) => {
 								if (lender) return next('Email already in use');
