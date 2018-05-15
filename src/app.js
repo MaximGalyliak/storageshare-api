@@ -8,9 +8,12 @@ var flash = require('connect-flash');
 var passport = require('./authentication');
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+//renters route
 var indexRouter = require('./routes/index');
-var apiRouter   = require('./routes/api');
+var apiRouter = require('./routes/api');
 var sequelize = require('./config/sequelize');
+//lenders route
+var lenderIndexRouter = require('./routes/lenderIndex');
 
 var app = express();
 
@@ -28,33 +31,38 @@ app.use(cookieParser());
 
 // setup session
 var myStore = new SequelizeStore({
-  db: sequelize
+	db: sequelize,
 });
-app.use(session({ 
-  name: 'session-id',
-  secret: "scrt", 
-  store: myStore,
-  resave: true,
-  saveUninitialized: true,
-}));
+app.use(
+	session({
+		name: 'session-id',
+		secret: 'scrt',
+		store: myStore,
+		resave: true,
+		saveUninitialized: true,
+	})
+);
 myStore.sync();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-if(process.env.NODE_ENV === "development"){
-  app.use((req, res, next) => {
-    const allowed_header = ['http://localhost:3000'];
-    const origin = req.headers.origin;
-    if (allowed_header.indexOf(origin) > -1) {
-      res.header('Access-Control-Allow-Origin', origin);
-    }
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, ideaJWT, Accept'
-    );
-    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
-    next();
-  });
+if (process.env.NODE_ENV === 'development') {
+	app.use((req, res, next) => {
+		const allowed_header = ['http://localhost:3000'];
+		const origin = req.headers.origin;
+		if (allowed_header.indexOf(origin) > -1) {
+			res.header('Access-Control-Allow-Origin', origin);
+		}
+		res.header(
+			'Access-Control-Allow-Headers',
+			'Origin, X-Requested-With, Content-Type, ideaJWT, Accept'
+		);
+		res.header(
+			'Access-Control-Allow-Methods',
+			'POST, GET, OPTIONS, PUT, DELETE'
+		);
+		next();
+	});
 }
 app.disable('etag');
 
@@ -63,8 +71,12 @@ app.use(passport.session());
 
 app.use(flash());
 
+//Renters
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+
+//Lenders
+app.use('/lenders', lenderIndexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
