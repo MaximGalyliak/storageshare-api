@@ -7,20 +7,16 @@ var db = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	res.render('index', { title: 'Express' });
 });
 
-
-router.post('/login',
-  passport.authenticate('local'), 
-  (req, res) => {
-    res.json({ id: req.user.id });
-  }
-);
+router.post('/login', passport.authenticate('renters'), (req, res) => {
+	res.json({ id: req.user.id });
+});
 
 router.get('/logout', function(req, res) {
-  req.logout();
-  res.sendStatus(200);
+	req.logout();
+	res.sendStatus(200);
 });
 
 router.post('/newrenter', (req, res) => {
@@ -29,14 +25,14 @@ router.post('/newrenter', (req, res) => {
 		email: req.body.email,
 		paypal_id: req.body.paypal,
 		phone: req.body.phone,
-    address: req.body.address,
-    password: req.body.password,
+		address: req.body.address,
+		password: req.body.password,
 	})
 		.then((response) => {
 			res.status(201).json({ newRenterId: response.dataValues.id });
 		})
 		.catch((error) => {
-			res.status(400).json({error: error.get('email')[0].message});
+			res.status(400).json({ error: error.get('email')[0].message });
 		});
 });
 
