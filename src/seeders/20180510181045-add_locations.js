@@ -6,7 +6,7 @@ module.exports = {
 			'Locations',
 			[
 				{
-					address: '911 XYZ St, XYZ, XZ 11111',
+					address: '2200 16th St, Sacramento, CA 95818',
 					inspected: true,
 					space_total: 500,
 					space_rented: 200,
@@ -17,7 +17,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					address: '111 ABC St, ABC, AB 11111',
+					address: '6619 Florin Rd, Sacramento, CA 95828',
 					inspected: true,
 					space_total: 1000,
 					space_rented: 0,
@@ -28,7 +28,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					address: '500 Yuma St, Yuma, AZ 11111',
+					address: '604 W El Camino Ave, Sacramento, CA 95833',
 					inspected: false,
 					space_total: 1500,
 					space_rented: 100,
@@ -39,13 +39,24 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					address: '1500 Park Ave, NY, NY 11111',
+					address: '2005 Town Center Plaza, West Sacramento, CA 95691',
 					inspected: true,
 					space_total: 200,
 					space_rented: 0,
 					min_box_size: 0,
 					max_box_size: 0,
 					LenderId: 3,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				{
+					address: '7141 Franklin Blvd, Sacramento, CA 95823',
+					inspected: true,
+					space_total: 500,
+					space_rented: 0,
+					min_box_size: 0,
+					max_box_size: 0,
+					LenderId: 4,
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
