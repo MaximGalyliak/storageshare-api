@@ -1,8 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var db = require('../models');
-var table;
+var { Renters, Lenders } = require('../models');
 
 passport.use(
 	'renters',
@@ -12,7 +11,7 @@ passport.use(
 			passwordField: 'password',
 		},
 		function(email, password, done) {
-			db.Renters.findOne({ where: { email: email } })
+			Renters.findOne({ where: { email: email } })
 				.then((renter) => {
 					if (!renter) {
 						return done(null, false, { message: 'Incorrect email' });
@@ -34,13 +33,14 @@ passport.use(
 			passwordField: 'password',
 		},
 		function(email, password, done) {
-			db.Lenders.findOne({ where: { email: email } })
+			Lenders.findOne({ where: { email: email } })
 				.then((lender) => {
 					if (!lender) {
 						return done(null, false, { message: 'Incorrect email' });
 					}
-					if (!lender.validPassword(password))
+					if (!lender.validPassword(password)) {
 						return done(null, false, { message: 'Incorrect password' });
+					}
 					return done(null, lender);
 				})
 				.catch((err) => done(err));
@@ -55,12 +55,12 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
 	console.log(id);
 
-	db.Lenders.findById(id)
+	Lenders.findById(id)
 		.then((lender) => done(null, lender.dataValues))
 		.catch((err) => {
 			if (err) {
 				console.log('renters');
-				db.Renters.findById(id).then((renter) => done(null, renter.dataValues));
+				Renters.findById(id).then((renter) => done(null, renter.dataValues));
 			}
 		});
 });
