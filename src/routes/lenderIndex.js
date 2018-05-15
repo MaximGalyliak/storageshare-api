@@ -2,15 +2,14 @@ var express = require('express');
 var router = express.Router();
 var passport = require('../authentication');
 
-var { Boxes, Items, Renters } = require('../models');
-var db = require('../models');
+var { Lenders } = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
-router.post('/login', passport.authenticate('renters'), (req, res) => {
+router.post('/login', passport.authenticate('lenders'), (req, res) => {
 	res.json({ id: req.user.id });
 });
 
@@ -19,17 +18,17 @@ router.get('/logout', function(req, res) {
 	res.sendStatus(200);
 });
 
-router.post('/newrenter', (req, res) => {
-	db.Renters.create({
+router.post('/newlender', (req, res) => {
+	Lenders.create({
 		name: req.body.name,
 		email: req.body.email,
-		paypal_id: req.body.paypal,
+		background_check: req.body.background_check,
 		phone: req.body.phone,
 		address: req.body.address,
 		password: req.body.password,
 	})
 		.then((response) => {
-			res.status(201).json({ newRenterId: response.dataValues.id });
+			res.status(201).json({ newLenderId: response.dataValues.id });
 		})
 		.catch((error) => {
 			res.status(400).json({ error: error.get('email')[0].message });

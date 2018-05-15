@@ -13,8 +13,7 @@ module.exports = function(sequelize, DataTypes) {
 				type: DataTypes.STRING,
 				validate: {
 					isEmail: true,
-					isUnqie: 
-						function(value, next) {
+					isUnique: function(value, next) {
 							Renters.find({where: {email: value}})
 								.then((renter) => {
 									if(renter)
