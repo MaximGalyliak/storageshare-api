@@ -14,6 +14,10 @@ var apiRouter = require('./routes/api');
 var sequelize = require('./config/sequelize');
 //lenders route
 var lenderIndexRouter = require('./routes/lenderIndex');
+var lendersApiRouter = require('./routes/lendersApi');
+
+//comman route
+var messagesRouter = require('./routes/messagesRouter');
 
 var app = express();
 
@@ -74,9 +78,11 @@ app.use(flash());
 //Renters
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/messages', messagesRouter);
 
 //Lenders
 app.use('/lenders', lenderIndexRouter);
+app.use('/lendersapi', lendersApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

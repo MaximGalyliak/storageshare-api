@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	);
 
-	Boxes.associate = function(models) {		
+	Boxes.associate = function(models) {
 		Boxes.belongsTo(models.Locations, {
 			foreignKey: {
 				allowNull: true,
@@ -43,6 +43,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 		});
 		Boxes.hasMany(models.Items);
+		Boxes.hasOne(models.Messages);
 	};
 
 	return Boxes;
