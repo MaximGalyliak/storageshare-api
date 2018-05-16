@@ -8,9 +8,15 @@ function getDistances(renterAddress, locationAdresses) {
     let origin = renterAddress.replace(/,/g, '').replace(/ /g , '+')
     let destinations = locationAdresses.map(e => e + '|').toString().replace(/,/g , '').replace(/ /g , '+')
     let distanceMatrixRequest = baseURL + origin + '&destinations=' + destinations.substring(0, destinations.length - 1) + '&key=' +key.access_token_key;
-    console.log(distanceMatrixRequest)
-    // console.log(destinations.substring(0, destinations.length - 1))
-
+    
+    request(distanceMatrixRequest, (err, response, body) => {
+        if (err){
+            throw err
+        }
+        else {
+            return body
+        }
+    })
 }
 
 module.exports = { getDistances }
