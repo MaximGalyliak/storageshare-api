@@ -17,4 +17,19 @@ router.get('/lenders', (req,res) => {
         });
 })
 
+router.get('/renter/:user', (req, res) => {
+    db.Renters.findAll({
+        where: {
+            RenterId: req.params.user  
+        },
+        include: [
+            {
+                model: address
+            },
+        ],
+    }).then((data) => {
+        console.log(data);
+    });  
+});
+
 module.exports = router;
