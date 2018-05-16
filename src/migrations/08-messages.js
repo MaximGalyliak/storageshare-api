@@ -14,7 +14,11 @@ module.exports = {
 			},
 			isAccepted: {
 				type: DataTypes.BOOLEAN,
-				defaultValue: false,
+				defaultValue: null, //--will set to true or false when lenders takes action
+			},
+			readByRenter: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: true,
 			},
 			createdAt: {
 				type: DataTypes.DATE,
@@ -31,13 +35,13 @@ module.exports = {
 					key: 'id',
 				},
 			},
-			RenterId: {
-				type: DataTypes.INTEGER,
-				reference: {
-					model: 'Renters',
-					key: 'id',
-				},
-			},
+			// RenterId: {
+			// 	type: DataTypes.INTEGER,
+			// 	reference: {
+			// 		model: 'Renters',
+			// 		key: 'id',
+			// 	},
+			// },
 			LocationId: {
 				type: DataTypes.INTEGER,
 				reference: {
@@ -45,13 +49,13 @@ module.exports = {
 					key: 'id',
 				},
 			},
-			LenderId: {
-				type: DataTypes.INTEGER,
-				reference: {
-					model: 'Lenders',
-					key: 'id',
-				},
-			},
+			// LenderId: {
+			// 	type: DataTypes.INTEGER,
+			// 	reference: {
+			// 		model: 'Lenders',
+			// 		key: 'id',
+			// 	},
+			// },
 		});
 	},
 	down: (queryInterface) => {
