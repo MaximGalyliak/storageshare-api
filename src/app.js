@@ -14,15 +14,12 @@ var apiRouter = require('./routes/api');
 var sequelize = require('./config/sequelize');
 //lenders route
 var lenderIndexRouter = require('./routes/lenderIndex');
-<<<<<<< HEAD
 var lendersApiRouter = require('./routes/lendersApi');
 
 //comman route
 var messagesRouter = require('./routes/messagesRouter');
-=======
 //gmaps route
 var gmapsRouter = require('./routes/gmaps');
->>>>>>> create api call to db to pull lenders data for maps function
 
 var app = express();
 
