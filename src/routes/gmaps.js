@@ -1,5 +1,7 @@
+var request = require('request');
 var express = require('express');
 var router = express.Router();
+
 
 var { Lenders, Renters } = require('../models');
 var db = require('../models');
@@ -20,11 +22,15 @@ router.get('/lenders', (req,res) => {
 router.get('/renter/:user', (req, res) => {
     db.Renters.findAll({
         where: {
-            RenterId: req.params.user  
+            id: req.params.user  
         }
     }).then((data) => {
         console.log(data);
     });  
 });
+
+router.get('/distanceCalc', (req, res) => {
+
+})
 
 module.exports = router;
