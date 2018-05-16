@@ -52,6 +52,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 		});
 		Locations.hasMany(models.Boxes);
+		Locations.hasMany(models.Messages);
 	};
 
 	return Locations;
