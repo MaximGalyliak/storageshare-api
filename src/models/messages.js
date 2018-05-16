@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
             isAccepted: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
-            }
+            },
         },
         {
             freezeTableName: true,
@@ -31,6 +31,14 @@ module.exports = function(sequelize, DataTypes) {
             }
         });    
     };
+
+    Messages.associate = function (models) {
+        Messages.belongsTo(models.Boxes, {
+            foreignKey: {
+                allowNull: false,
+            }
+        });
+    }
 
     return Messages;
 

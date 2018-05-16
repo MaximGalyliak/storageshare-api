@@ -8,6 +8,7 @@ module.exports = {
 				isAccepted: false,
 				RenterId: 1,
 				LenderId: 1,
+				BoxId: 1,
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
