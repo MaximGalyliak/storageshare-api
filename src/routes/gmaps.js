@@ -1,10 +1,15 @@
 var request = require('request');
+var promise = require('bluebird');
 var express = require('express');
 var router = express.Router();
 
-
 var { Lenders, Renters, Locations } = require('../models');
 var db = require('../models');
+
+//allows for node to monitor processes for promise completion
+promise.config({
+    monitoring: true
+});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -36,44 +41,37 @@ router.get('/findspace/:user', (req, res) => {
     let allLocations = null;
 
     //pulls the current renter/user data from the db
-    function getRenter() {
-        db.Renters.findById(req.params.user,
-        { 
+    var getRenter = db.Renters.findById(userID,{ 
         attributes: ['address']  
         }).then((data) => {
-            console.log(data);
+            return data
         });
-    }
+
 
     //pulls the locations from the db
-    function getLocations() {
-        db.Locations.findAll({
-            attributes: ['LenderId', 'address']
-        })
-    }
+    var getLocations = db.Locations.findAll({
+        attributes: ['LenderId', 'address']
+    }).then((response) => {
+        return response
+    })
+    
 
     //pulls all lenders from the db
-    function getLenders() {
-        db.Lenders.findAll({})
-            .then((response) => {
-                console.log(response)
-                allLenders = response
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }        
-    getLocations()
+    var getLenders = db.Lenders.findAll({})
+        .then((response) => {
+            return response
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 
     //uses bluebird to properly chain the db requests and storethe data for the gmaps api request
-    process.on("promiseChained", function(getLocations, getRenter){
-        allLocations = event.details.promise;
-        currentRenter = event.details.child;
-        console.log(allLocations)    
-        console.log(currentRenter)    
-    });
-        
-})
+    Promise.all([getRenter, getLocations]).then((values) => {
+        console.log(values)
+        res.json(values)
+    })    
+});
+    
 
 
 
