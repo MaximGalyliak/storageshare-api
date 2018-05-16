@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('../authentication');
 
-//var { Boxes, Items } = require('../models'); //using db instead for all models..
-var db = require('../models');
+var { Boxes, Items, Renters, Sizes } = require('../models');
 
 var thisAuthenticated = function(req, res, next) {
 	if (req.isAuthenticated() && req.params.user == req.user.id) return next();
@@ -16,7 +15,7 @@ var isAuthenticated = function(req, res, next) {
 };
 
 router.get('/sizes', (req, res) => {
-	db.Sizes.findAll({})
+	Sizes.findAll({})
 		.then((response) => res.json(response))
 		.catch((e) => {
 			console.log(e);
@@ -27,7 +26,7 @@ router.use('/*/:user/', thisAuthenticated);
 router.use('/*/', isAuthenticated);
 
 router.get('/box/:user', function(req, res) {
-	db.Boxes.findAll({
+	Boxes.findAll({
 		where: {
 			RenterId: req.params.user,
 		},
@@ -42,12 +41,13 @@ router.get('/box/:user', function(req, res) {
 });
 
 router.post('/box', (req, res) => {
-	db.Boxes.create({
-		description: 'test',
+	Boxes.create({
+		description: req.body.description,
 		fragile: req.body.fragile,
 		weight: req.body.weight,
-		SizeId: req.body.sizeId,
+		SizeId: req.body.SizeId,
 		RenterId: req.user.id,
+		status: req.body.status,
 	})
 		.then((response) => {
 			res.status(201).json({ newBoxId: response.dataValues.id });
@@ -58,8 +58,7 @@ router.post('/box', (req, res) => {
 });
 
 router.post('/newitems', (req, res) => {
-
-	db.Items.bulkCreate(req.body.items)
+	Items.bulkCreate(req.body.items)
 		.then((items) => {
 			let itemIds = [];
 
