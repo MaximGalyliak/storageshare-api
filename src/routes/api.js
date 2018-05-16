@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('../authentication');
 
-var { Boxes, Items, Renters, Sizes } = require('../models');
+var { Boxes, Items, Renters, Sizes, Locations } = require('../models');
 
 var thisAuthenticated = function(req, res, next) {
 	if (req.isAuthenticated() && req.params.user == req.user.id) return next();
@@ -25,16 +25,33 @@ router.get('/sizes', (req, res) => {
 router.use('/*/:user/', thisAuthenticated);
 router.use('/*/', isAuthenticated);
 
+/* GET all items for Renter */
+router.get('/items/:user', function(req, res, next) {
+	Items.findAll({
+		include: {
+			model: Boxes,
+			where: {
+				RenterId: req.params.user,
+			},
+			include: { model: Locations }
+		},
+	}).then((data) => {
+		//console.log(data);
+		res.json(data);
+	});
+});
+
 router.get('/box/:user', function(req, res) {
 	Boxes.findAll({
 		where: {
 			RenterId: req.params.user,
 		},
-		include: [
-			{
-				model: Items,
-			},
-		],
+		include: {
+			model: Items,
+		},
+		include: {
+			model: Locations,
+		},
 	}).then((data) => {
 		res.json(data);
 	});
