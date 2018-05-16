@@ -1,15 +1,9 @@
 var request = require('request');
-var promise = require('bluebird');
 var express = require('express');
 var router = express.Router();
 
 var { Lenders, Renters, Locations } = require('../models');
 var db = require('../models');
-
-//allows for node to monitor processes for promise completion
-promise.config({
-    monitoring: true
-});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -53,7 +47,7 @@ router.get('/findspace/:user', (req, res) => {
         attributes: ['LenderId', 'address']
     }).then((response) => {
         return response
-    })
+    });
     
 
     //pulls all lenders from the db
@@ -67,9 +61,16 @@ router.get('/findspace/:user', (req, res) => {
 
     //uses bluebird to properly chain the db requests and storethe data for the gmaps api request
     Promise.all([getRenter, getLocations]).then((values) => {
-        console.log(values)
-        res.json(values)
-    })    
+    
+        res.json(values);
+        //current renter address
+        let currentRenterAdddress = values[0].address
+
+        //creates array with all lender addresses
+        let possibleMatches = values[1].map(e => e.address)
+        console.log(possibleMatches)
+
+    })
 });
     
 
