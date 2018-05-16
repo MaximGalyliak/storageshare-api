@@ -4,6 +4,7 @@ var router = express.Router();
 
 var { Lenders, Renters, Locations } = require('../models');
 var db = require('../models');
+var gmaps = require('../config/maps')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -68,7 +69,10 @@ router.get('/findspace/:user', (req, res) => {
 
         //creates array with all lender addresses
         let possibleMatches = values[1].map(e => e.address)
-        console.log(possibleMatches)
+        // console.log(possibleMatches)
+        gmaps.getDistances(currentRenterAdddress, possibleMatches)
+
+
 
     })
 });
