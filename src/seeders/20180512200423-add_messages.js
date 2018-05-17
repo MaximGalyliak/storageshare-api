@@ -21,6 +21,24 @@ module.exports = {
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
+			{
+				message: 'Need space for Kincky stuff.. you can use them as well',
+				BoxId: 4,
+				LocationId: 3,
+				readByRenter: false,
+				isAccepted: true,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			},
+			{
+				message: 'Kincky stuff.. store them & use them',
+				BoxId: 5,
+				LocationId: 3,
+				readByRenter: false,
+				isAccepted: false,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			},
 		]);
 	},
 

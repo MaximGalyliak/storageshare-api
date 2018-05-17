@@ -36,6 +36,26 @@ module.exports = {
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
+				{
+					description: 'Kinky 1',
+					weight: 250,
+					fragile: false,
+					status: 'created',
+					RenterId: 2,
+					SizeId: 3,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				{
+					description: 'Kinky 2',
+					weight: 250,
+					fragile: false,
+					status: 'created',
+					RenterId: 2,
+					SizeId: 3,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
 			],
 			{}
 		);
