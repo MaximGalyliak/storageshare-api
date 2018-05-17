@@ -77,22 +77,17 @@ router.get('/findspace/:user', (req, res) => {
 
         //creates array with all lender addresses
         let possibleMatches = values[1].map(e => e.address)
+        console.log(possibleMatches)
         // console.log(possibleMatches)
         var calcDistances = gmaps([currentRenterAdddress, possibleMatches], (results) => {
             
             let data = JSON.parse(results)
-            res.json(data)
             //isolates the distance results from the maps response
             let info = data.rows[0].elements
-            //appends the location id to the maps data prior to sorting. the data is returned in the order it was give which is by id.
-            let tagged = info.map((e) => {
-                let locationId = e['id'] = info.indexOf(e)
-                return e
-            })
-            //sort responses by distance (value is the distance in meters between the renter and the locations)
-            let sorted  = tagged.sort(distCompare)
-            console.log(JSON.stringify(sorted))
             
+            //sort responses by distance (value is the distance in meters between the renter and the locations)
+            let top3 = info.sort(distCompare).slice(0,3)
+            res.json(top3);
         });
     });
 });
