@@ -4,7 +4,7 @@ var router = express.Router();
 
 var { Lenders, Renters, Locations } = require('../models');
 var db = require('../models');
-var gmaps = require('../config/maps').getDistances()
+var gmaps = require('../config/maps').getDistances
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -59,21 +59,23 @@ router.get('/findspace/:user', (req, res) => {
         .catch((e) => {
             console.log(e);
         });
+        
 
-    //uses bluebird to properly chain the db requests and storethe data for the gmaps api request
+    //chain the db requests and store the data for the gmaps api request
     Promise.all([getRenter, getLocations]).then((values) => {
     
-        res.json(values);
         //current renter address
         let currentRenterAdddress = values[0].address
 
         //creates array with all lender addresses
         let possibleMatches = values[1].map(e => e.address)
         // console.log(possibleMatches)
-        gmaps.getDistances(([currentRenterAdddress, possibleMatches], res) => {
-            console.log(res)
-        })
-    })
+        var calcDistances = gmaps([currentRenterAdddress, possibleMatches], (results) => {
+            console.log(results)
+            res.json(results)
+            
+        });
+    });
 });
     
 

@@ -1,11 +1,13 @@
 var request = require('request');
 var key = require('./keys').gMaps
 
-const baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins='
+const baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='
  
 
 module.exports = {
-	getDistances: function (renterAddress, locationAdresses, cb) {
+	getDistances: function (values, cb) {
+		let renterAddress = values[0]
+		let locationAdresses = values[1]
 		let origin = renterAddress.replace(/,/g, '').replace(/ /g, '+');
 		let destinations = locationAdresses
 			.map((e) => e + '|')
@@ -24,6 +26,7 @@ module.exports = {
 			if (err) {
 				throw err;
 			} else {
+
 				cb(body);
 			}
 		});
