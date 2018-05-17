@@ -46,12 +46,10 @@ router.get('/box/:user', function(req, res) {
 		where: {
 			RenterId: req.params.user,
 		},
-		include: {
-			model: Items,
-		},
-		include: {
-			model: Locations,
-		},
+		include: [
+			{model: Items},
+			{model: Locations},
+		],
 	}).then((data) => {
 		res.json(data);
 	});

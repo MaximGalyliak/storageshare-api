@@ -18,6 +18,7 @@ passport.use(
 					}
 					if (!renter.validPassword(password))
 						return done(null, false, { message: 'Incorrect password' });
+					renter.type = 'renter';
 					return done(null, renter);
 				})
 				.catch((err) => done(err));
@@ -41,6 +42,7 @@ passport.use(
 					if (!lender.validPassword(password)) {
 						return done(null, false, { message: 'Incorrect password' });
 					}
+					lender.type = 'lender';
 					return done(null, lender);
 				})
 				.catch((err) => done(err));
@@ -49,20 +51,21 @@ passport.use(
 );
 
 passport.serializeUser(function(user, done) {
-	done(null, user.id);
+	done(null, {id: user.id, type: user.type});
 });
 
 passport.deserializeUser(function(id, done) {
-	console.log(id);
+	if(id.type === 'renter'){
+		Renters.findById(id.id)
+			.then((renter) => done(null, renter.dataValues))
+			.catch((err) => console.log(err));
+	}
 
-	Lenders.findById(id)
-		.then((lender) => done(null, lender.dataValues))
-		.catch((err) => {
-			if (err) {
-				console.log('renters');
-				Renters.findById(id).then((renter) => done(null, renter.dataValues));
-			}
-		});
+	else if(id.type === 'lender'){
+		Lenders.findById(id.id)
+		  .then((lender) => done(null, lender.dataValues))
+		  .catch((err) => console.log(err));
+	}
 });
 
 module.exports = passport;
