@@ -59,6 +59,14 @@ router.get('/findspace/:user', (req, res) => {
         .catch((e) => {
             console.log(e);
         });
+    
+        function distCompare(a, b) {
+        if (a.distance.value < b.distance.value)
+            return -1;
+        if (a.distance.value > b.distance.value);
+            return 1;
+        return 0;
+    }    
         
 
     //chain the db requests and store the data for the gmaps api request
@@ -71,8 +79,10 @@ router.get('/findspace/:user', (req, res) => {
         let possibleMatches = values[1].map(e => e.address)
         // console.log(possibleMatches)
         var calcDistances = gmaps([currentRenterAdddress, possibleMatches], (results) => {
-            console.log(results)
-            res.json(results)
+            
+            let data = JSON.parse(results)
+            res.json(data)
+            console.log(data.rows[0])
             
         });
     });
