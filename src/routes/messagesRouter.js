@@ -19,20 +19,19 @@ router.use('/*/', isAuthenticated);
 
 router.get('/renter/:user', (req, res) => {
 	Messages.findAll({
+		order: [['readByRenter']],
 		include: [
 			{
 				model: Boxes,
 				where: { RenterId: req.params.user },
-				include: [{ model: Renters }],
 			},
 			{
 				model: Locations,
-				// include: [{ model: Lenders }],
 			},
 		],
 	})
 		.then((response) => {
-			console.log(response);
+			//console.log(response);
 			res.json(response);
 		})
 		.catch((e) => {
