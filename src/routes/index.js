@@ -19,7 +19,7 @@ router.get('/logout', function(req, res) {
 	res.sendStatus(200);
 });
 
-router.post('/newrenter', (req, res) => {
+router.post('/newrenter', (req, res, next) => {
 	db.Renters.create({
 		name: req.body.name,
 		email: req.body.email,
@@ -29,11 +29,13 @@ router.post('/newrenter', (req, res) => {
 		password: req.body.password,
 	})
 		.then((response) => {
-			res.status(201).json({ newRenterId: response.dataValues.id });
+			return next();
 		})
 		.catch((error) => {
 			res.status(400).json({ error: error.get('email')[0].message });
 		});
+}, passport.authenticate('renters'), (req, res) => {
+	res.status(201).json({ newRenterId: req.user.id });
 });
 
 module.exports = router;

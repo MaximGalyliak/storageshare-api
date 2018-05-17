@@ -18,7 +18,7 @@ router.get('/logout', function(req, res) {
 	res.sendStatus(200);
 });
 
-router.post('/newlender', (req, res) => {
+router.post('/newlender', (req, res, next) => {
 	Lenders.create({
 		name: req.body.name,
 		email: req.body.email,
@@ -28,11 +28,13 @@ router.post('/newlender', (req, res) => {
 		password: req.body.password,
 	})
 		.then((response) => {
-			res.status(201).json({ newLenderId: response.dataValues.id });
+			return next();
 		})
 		.catch((error) => {
 			res.status(400).json({ error: error.get('email')[0].message });
 		});
+}, passport.authenticate('lenders'), (req, res) => {
+	res.status(201).json({ newLenderId: req.user.id });
 });
 
 module.exports = router;
