@@ -19,16 +19,22 @@ router.use('/*/', isAuthenticated);
 
 router.get('/renter/:user', (req, res) => {
 	Messages.findAll({
-		include: {
-			model: Boxes,
-			where: { RenterId: req.user.id },
-		},
-		include: {
-			model: Locations,
-			include: { model: Lenders },
-		},
+		include: [
+			{
+				model: Boxes,
+				where: { RenterId: req.params.user },
+				include: [{ model: Renters }],
+			},
+			{
+				model: Locations,
+				// include: [{ model: Lenders }],
+			},
+		],
 	})
-		.then((response) => res.json(response))
+		.then((response) => {
+			console.log(response);
+			res.json(response);
+		})
 		.catch((e) => {
 			console.log(e);
 		});
@@ -36,17 +42,19 @@ router.get('/renter/:user', (req, res) => {
 
 router.get('/lender/:user', (req, res) => {
 	Messages.findAll({
-		include: {
-			model: Boxes,
-			include: {
+		include: [
+			{
+				model: Boxes,
+			},
+			{
 				model: Renters,
 				where: { id: Boxes.RenterId },
 			},
-		},
-		include: {
-			model: Locations,
-			where: { LenderId: req.user.id },
-		},
+			{
+				model: Locations,
+				where: { LenderId: req.user.id },
+			},
+		],
 	})
 		.then((response) => res.json(response))
 		.catch((e) => {
