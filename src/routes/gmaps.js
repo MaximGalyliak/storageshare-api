@@ -60,6 +60,7 @@ router.get('/findspace/:user', (req, res) => {
             console.log(e);
         });
     
+    //function for compare location values
         function distCompare(a, b) {
         if (a.distance.value < b.distance.value)
             return -1;
@@ -77,7 +78,7 @@ router.get('/findspace/:user', (req, res) => {
 
         //creates array with all lender addresses
         let possibleMatches = values[1].map(e => e.address)
-        console.log(possibleMatches)
+        //sorts the distance of the locations and adds the addresses and location id.
         var calcDistances = gmaps([currentRenterAdddress, possibleMatches], (results) => {
             
             let data = JSON.parse(results)
@@ -92,7 +93,6 @@ router.get('/findspace/:user', (req, res) => {
             //add address data to top3 array
             top3.map((e) => {
                 e['location_address'] = data.destination_addresses[e.location_id]
-                console.log(e.id)
             })
             res.json(top3);
             
