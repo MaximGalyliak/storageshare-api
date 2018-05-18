@@ -8,6 +8,7 @@ module.exports = {
 			'Lenders',
 			[
 				{
+					id: 1,
 					name: 'John Doe',
 					email: 'demo@demo.com',
 					address: '911 XYZ St, XYZ, XZ 11111',
@@ -18,6 +19,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 2,
 					name: 'Mike Doe',
 					email: 'mike@demo.com',
 					password: bcrypt.hashSync('test', bcrypt.genSaltSync()),
@@ -27,6 +29,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 3,
 					name: 'Jane Doe',
 					email: 'jane@demo.com',
 					password: bcrypt.hashSync('test', bcrypt.genSaltSync()),
@@ -37,6 +40,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 4,
 					name: 'Jack Doe',
 					email: 'jax@demo.com',
 					password: bcrypt.hashSync('test', bcrypt.genSaltSync()),
@@ -46,6 +50,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 5,
 					name: 'Charlie Doe',
 					email: 'rose@demo.com',
 					password: bcrypt.hashSync('test', bcrypt.genSaltSync()),

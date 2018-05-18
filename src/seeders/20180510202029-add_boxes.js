@@ -6,6 +6,7 @@ module.exports = {
 			'Boxes',
 			[
 				{
+					id: 1,
 					description: 'Kitchen 1',
 					weight: 50,
 					fragile: true,
@@ -16,6 +17,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 2,
 					description: 'Sporting goods',
 					weight: 25,
 					fragile: false,
@@ -27,6 +29,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 3,
 					description: 'Furniture',
 					weight: 250,
 					fragile: false,
@@ -37,6 +40,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 4,
 					description: 'Kinky 1',
 					weight: 250,
 					fragile: false,
@@ -47,6 +51,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 5,
 					description: 'Kinky 2',
 					weight: 250,
 					fragile: false,
