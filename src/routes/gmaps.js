@@ -77,6 +77,7 @@ router.get('/findspace/:user', (req, res) => {
 
         //creates array with all lender addresses
         let possibleMatches = values[1].map(e => e.address)
+        //sorts the distance of the locations and adds the addresses and location id.
         var calcDistances = gmaps([currentRenterAdddress, possibleMatches], (results) => {
             
             let data = JSON.parse(results)
