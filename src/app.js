@@ -27,8 +27,8 @@ var app = express();
 var db = require('./models');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -50,7 +50,12 @@ app.use(
 );
 myStore.sync();
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public'), {
+	extensions: ['html']
+}));
+// app.use(express.static(path.join(__dirname, 'public/static'), {
+// 	extensions: ['html']
+// }));
 
 if (process.env.NODE_ENV === 'development') {
 	app.use((req, res, next) => {
