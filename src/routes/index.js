@@ -6,9 +6,9 @@ var { Boxes, Items, Renters } = require('../models');
 var db = require('../models');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Express' });
-});
+// router.get('/', function(req, res, next) {
+// 	res.render('index', { title: 'Express' });
+// });
 
 router.post('/login', passport.authenticate('renters'), (req, res) => {
 	res.json({ id: req.user.id });
