@@ -5,12 +5,12 @@ var passport = require('../authentication');
 var { Boxes, Items, Renters, Sizes, Locations } = require('../models');
 
 var thisAuthenticated = function(req, res, next) {
-	if (req.isAuthenticated() && req.params.user == req.user.id) return next();
+	if (req.isAuthenticated() && req.user.type === 'renter' && req.params.user == req.user.id) return next();
 	res.sendStatus(401);
 };
 
 var isAuthenticated = function(req, res, next) {
-	if (req.isAuthenticated()) return next();
+	if (req.isAuthenticated() && req.user.type === 'renter') return next();
 	res.sendStatus(401);
 };
 
@@ -86,5 +86,9 @@ router.post('/newitems', (req, res) => {
 			res.sendStatus(500);
 		});
 });
+
+router.get('/userid', (req, res) => {
+	res.json({userid: req.user.id });
+})
 
 module.exports = router;
