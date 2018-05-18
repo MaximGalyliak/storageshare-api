@@ -20,7 +20,7 @@ module.exports = {
 					weight: 25,
 					fragile: false,
 					status: 'housed',
-					LocationId: 62,
+					LocationId: 12,
 					RenterId: 12,
 					SizeId: 2,
 					createdAt: new Date(),
