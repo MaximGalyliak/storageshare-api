@@ -50,7 +50,6 @@ router.get('/findspace/:user', (req, res) => {
         return response
     });
     
-
     //pulls all lenders from the db
     var getLenders = db.Lenders.findAll({})
         .then((response) => {
