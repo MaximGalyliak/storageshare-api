@@ -4,6 +4,7 @@ module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.bulkInsert('Messages', [
 			{
+				id: 1,
 				message: 'I would like to store my boxes at your location please.',
 				BoxId: 3,
 				LocationId: 2,
@@ -13,6 +14,7 @@ module.exports = {
 				updatedAt: new Date(),
 			},
 			{
+				id: 2,
 				message: 'I would like to store my boxes at your location please.',
 				BoxId: 2,
 				LocationId: 1,
@@ -22,6 +24,7 @@ module.exports = {
 				updatedAt: new Date(),
 			},
 			{
+				id: 3,
 				message: 'Need space for Kincky stuff.. you can use them as well',
 				BoxId: 4,
 				LocationId: 3,
@@ -31,6 +34,7 @@ module.exports = {
 				updatedAt: new Date(),
 			},
 			{
+				id: 4,
 				message: 'Kincky stuff.. store them & use them',
 				BoxId: 5,
 				LocationId: 3,

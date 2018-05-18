@@ -6,6 +6,7 @@ module.exports = {
 			'Locations',
 			[
 				{
+					id: 1,
 					address: '2200 16th St, Sacramento, CA 95818',
 					inspected: true,
 					space_total: 500,
@@ -17,6 +18,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 2,
 					address: '6619 Florin Rd, Sacramento, CA 95828',
 					inspected: true,
 					space_total: 1000,
@@ -28,6 +30,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 3,
 					address: '604 W El Camino Ave, Sacramento, CA 95833',
 					inspected: false,
 					space_total: 1500,
@@ -39,6 +42,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 4,
 					address: '2005 Town Center Plaza, West Sacramento, CA 95691',
 					inspected: true,
 					space_total: 200,
@@ -50,6 +54,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 5,
 					address: '7141 Franklin Blvd, Sacramento, CA 95823',
 					inspected: true,
 					space_total: 500,

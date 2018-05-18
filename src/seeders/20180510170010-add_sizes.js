@@ -6,6 +6,7 @@ module.exports = {
 			'Sizes',
 			[
 				{
+					id: 1,
 					description: 'small box',
 					price: 50.0,
 					height: 18,
@@ -15,6 +16,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 2,
 					description: 'one room',
 					price: 100.0,
 					height: 72,
@@ -24,6 +26,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 3,
 					description: 'half room',
 					price: 75.0,
 					height: 36,
@@ -33,6 +36,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 4,
 					description: 'two room',
 					price: 125.0,
 					height: 108,

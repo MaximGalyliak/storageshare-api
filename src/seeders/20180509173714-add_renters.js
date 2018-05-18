@@ -8,6 +8,7 @@ module.exports = {
 			'Renters',
 			[
 				{
+					id: 1,
 					name: 'John Doe',
 					email: 'demo@demo.com',
 					paypal_id: 'johndoepaypal',
@@ -18,6 +19,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 2,
 					name: 'Mike Doe',
 					email: 'mike@demo.com',
 					paypal_id: 'johndoepaypal',
@@ -28,6 +30,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 3,
 					name: 'Jane Doe',
 					email: 'jane@demo.com',
 					paypal_id: 'johndoepaypal',
@@ -38,6 +41,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 4,
 					name: 'Jack Doe',
 					email: 'jax@demo.com',
 					paypal_id: 'johndoepaypal',
@@ -48,6 +52,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
+					id: 5,
 					name: 'Charlie Doe',
 					email: 'rose@demo.com',
 					paypal_id: 'johndoepaypal',
