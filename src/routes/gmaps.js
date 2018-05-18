@@ -60,6 +60,7 @@ router.get('/findspace/:user', (req, res) => {
             console.log(e);
         });
     
+    //function for compare location values
         function distCompare(a, b) {
         if (a.distance.value < b.distance.value)
             return -1;
