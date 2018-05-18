@@ -57,13 +57,21 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
 	if(id.type === 'renter'){
 		Renters.findById(id.id)
-			.then((renter) => done(null, renter.dataValues))
+			.then((renter) => {
+				var r = renter.dataValues;
+				r.type = 'renter';
+				done(null, r)
+			})
 			.catch((err) => console.log(err));
 	}
 
 	else if(id.type === 'lender'){
 		Lenders.findById(id.id)
-		  .then((lender) => done(null, lender.dataValues))
+		  .then((lender) => {
+			  var l = lender.dataValues;
+			  l.type = 'lender';
+			  done(null, l)
+		  })
 		  .catch((err) => console.log(err));
 	}
 });

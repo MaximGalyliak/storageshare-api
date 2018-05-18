@@ -5,12 +5,12 @@ var passport = require('../authentication');
 var { Lenders, Locations, Messages } = require('../models');
 
 var thisAuthenticated = function(req, res, next) {
-	if (req.isAuthenticated() && req.params.user == req.user.id) return next();
+	if (req.isAuthenticated() && req.user.type === 'lender' && req.params.user == req.user.id) return next();
 	res.sendStatus(401);
 };
 
 var isAuthenticated = function(req, res, next) {
-	if (req.isAuthenticated()) return next();
+	if (req.isAuthenticated() && req.user.type === 'lender') return next();
 	res.sendStatus(401);
 };
 
